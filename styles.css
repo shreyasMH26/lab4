@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+:root {
+    --thunder-gold: #f59e0b;
+    --lightning-yellow: #fbbf24;
+    --electric-glow: rgba(245, 158, 11, 0.45);
+    --zenitsu-orange: #d97706;
+    --zenitsu-blue: #1e3a8a;
+    --card-paper: #fffbeb;
+}
+
+body {
+    font-family: 'Indie Flower', cursive !important;
+    background: radial-gradient(circle at 50% 30%, #1e1b4b 0%, #0a0a14 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+::selection {
+    background: transparent;
+}
+
+h4 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 8px 0;
+    font-family: 'Amatic SC', cursive !important;
+}
+
+.color1 {
+    color: var(--zenitsu-orange);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.color2 {
+    color: var(--zenitsu-blue);
+    font-weight: bold;
+}
+
+.card {
+    color: #0f172a;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 420px;
+    background: var(--card-paper);
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) perspective(2000px);
+    box-shadow:
+        inset 300px 0 50px rgba(0, 0, 0, 0.5),
+        0 20px 60px rgba(0, 0, 0, 0.8),
+        0 0 35px var(--electric-glow);
+    transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 4px;
+}
+
+.card:hover {
+    transform:
+        translate(-50%, -50%) perspective(2000px) rotate(15deg) scale(1.15);
+    box-shadow:
+        inset 20px 0 50px rgba(0, 0, 0, 0.4),
+        0 15px 80px rgba(0, 0, 0, 0.9),
+        0 0 55px rgba(251, 191, 36, 0.65);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #d4af37;
+    transform-origin: bottom;
+    transform: skewX(-45deg);
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -5px;
+    width: 5px;
+    height: 100%;
+    background: #b8860b;
+    transform-origin: left;
+    transform: skewY(-45deg);
+}
+
+.card .imgBox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: left;
+    transition: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+
+.card .bark {
+    position: absolute;
+    background: var(--card-paper);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 0.7s;
+    border-radius: 4px;
+}
+
+.card .imgBox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
+    display: block;
+}
+
+.card:hover .imgBox {
+    transform: rotateY(-135deg);
+}
+
+.card:hover .bark {
+    opacity: 1;
+    transition: 0.6s;
+    box-shadow: 300px 200px 100px rgba(0, 0, 0, 0.4) inset;
+}
+
+.card .details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 25px 20px 20px 25px;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--card-paper);
+    border-radius: 4px;
+}
+
+.card .details p {
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 4px 0;
+    color: #1e293b;
+    transform: rotate(-3deg);
+}
+
+.card .details h4 {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.text-right {
+    text-align: right;
+    font-weight: bold;
+    color: var(--zenitsu-orange) !important;
+}
+
+.thunder-hint {
+    position: fixed;
+    bottom: 25px;
+    color: var(--lightning-yellow);
+    font-size: 18px;
+    font-family: 'Indie Flower', cursive;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+    opacity: 0.85;
+    animation: pulse 2s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
